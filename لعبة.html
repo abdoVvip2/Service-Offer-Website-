@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتجر الفخم | الأناقة الخالدة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #0b0e17; color: #e0e7ff; scroll-behavior: smooth; }
+        .royal-dark { background-color: #0a1428; }
+        .gold-accent { color: #c9a96e; }
+        .gold-gradient { background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 100%); color: #0a1428; }
+        .gold-border { border-color: #c9a96e; }
+        .hero-bg {
+            background: linear-gradient(rgba(10, 20, 40, 0.92), rgba(10, 20, 40, 0.90)), 
+                        url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover; background-position: center 20%;
+        }
+        .product-card {
+            background: #111827; border: 1px solid #2d3748;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-16px) scale(1.02);
+            box-shadow: 0 30px 60px -15px rgba(201, 169, 110, 0.25);
+            border-color: #c9a96e;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 100%);
+            color: #0a1428; transition: all 0.4s ease;
+        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 15px 30px -8px rgba(201, 169, 110, 0.4); }
+        .btn-outline-gold { border: 2px solid #c9a96e; color: #c9a96e; transition: all 0.4s ease; }
+        .btn-outline-gold:hover { background: #c9a96e; color: #0a1428; }
+        .icon-flip svg { transform: scaleX(-1); }
+        #cart-count {
+            position: absolute; top: -8px; right: -8px; background: #c9a96e; color: #0a1428;
+            font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%;
+            display: none; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #0a1428;
+        }
+        #cart-modal { display: none; }
+        .modal-overlay { background: rgba(0,0,0,0.7); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="royal-dark shadow-2xl fixed top-0 w-full z-50 border-b-2 gold-border">
+        <div class="container mx-auto px-6 py-6 flex justify-between items-center">
+            <div class="text-5xl font-bold gold-accent tracking-wider" style="font-family: 'Amiri', serif;">المتجر الفخم</div>
+            <nav class="hidden md:flex items-center space-x-12 space-x-reverse text-lg font-medium">
+                <a href="#" class="hover:text-[#c9a96e] transition-colors duration-300">الرئيسية</a>
+                <a href="#collections" class="hover:text-[#c9a96e] transition-colors duration-300">المجموعات</a>
+                <a href="#" class="hover:text-[#c9a96e] transition-colors duration-300">تواصل</a>
+            </nav>
+            <div class="flex items-center space-x-6 space-x-reverse">
+                <button class="p-3 rounded-full bg-gray-900 hover:bg-gray-800 transition-all icon-flip relative" id="cart-icon">
+                    <svg class="w-7 h-7" fill="none" stroke="#c9a96e" viewBox="0 0 24 24" stroke-width="2">
+                        <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                    </svg>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-bg h-screen flex items-center justify-center text-center px-6">
+        <div class="max-w-5xl">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold gold-accent mb-10 leading-none" style="font-family: 'Amiri', serif;">
+                الأناقة الخالدة
+            </h1>
+            <p class="text-2xl md:text-3xl text-gray-300 mb-14 font-light max-w-4xl mx-auto">
+                قطع مصنوعة بعناية فائقة للرجل الذي يقدر التميز والجودة العالية.
+            </p>
+            <a href="#collections" class="btn-gold px-16 py-6 rounded-full text-2xl font-bold inline-block shadow-2xl">
+                تصفح المجموعات
+            </a>
+        </div>
+    </section>
+
+    <section id="collections" class="container mx-auto px-6 py-32">
+        <div class="text-center mb-24">
+            <h2 class="text-6xl md:text-7xl font-bold gold-accent inline-block pb-6 border-b-4 gold-border" style="font-family: 'Amiri', serif;">
+                مجموعات مختارة
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
+            <div class="product-card rounded-3xl overflow-hidden shadow-2xl">
+                <div class="relative">
+                    <img src="https://files.catbox.moe/4cec62.png" alt="بدلة" class="w-full h-[480px] object-cover">
+                </div>
+                <div class="p-10 text-center">
+                    <h3 class="text-4xl font-bold gold-accent mb-4">بدلة كلاسيكية داكنة</h3>
+                    <p class="text-2xl text-gray-400 mb-10 font-semibold price">950 د.ج</p>
+                    <div class="space-y-5">
+                        <button class="w-full btn-gold py-5 rounded-2xl text-xl font-bold add-to-cart">إضافة إلى السلة</button>
+                        <a href="https://wa.me/213794718092?text=أريد%20طلب%20البدلة%20الكلاسيكية%20داكنة" 
+                           class="w-full btn-outline-gold py-5 rounded-2xl text-xl font-bold flex items-center justify-center gap-3 icon-flip">
+                            طلب عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card rounded-3xl overflow-hidden shadow-2xl">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1200&q=80" alt="حذاء" class="w-full h-[480px] object-cover">
+                </div>
+                <div class="p-10 text-center">
+                    <h3 class="text-4xl font-bold gold-accent mb-4">حذاء جلدي إيطالي</h3>
+                    <p class="text-2xl text-gray-400 mb-10 font-semibold price">420 د.ج</p>
+                    <div class="space-y-5">
+                        <button class="w-full btn-gold py-5 rounded-2xl text-xl font-bold add-to-cart">إضافة إلى السلة</button>
+                        <a href="https://wa.me/213794718092?text=أريد%20طلب%20الحذاء%20الجلدي%20الإيطالي" 
+                           class="w-full btn-outline-gold py-5 rounded-2xl text-xl font-bold flex items-center justify-center gap-3 icon-flip">
+                            طلب عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card rounded-3xl overflow-hidden shadow-2xl">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80" alt="ساعة" class="w-full h-[480px] object-cover">
+                </div>
+                <div class="p-10 text-center">
+                    <h3 class="text-4xl font-bold gold-accent mb-4">ساعة يد فاخرة</h3>
+                    <p class="text-2xl text-gray-400 mb-10 font-semibold price">1,200 د.ج</p>
+                    <div class="space-y-5">
+                        <button class="w-full btn-gold py-5 rounded-2xl text-xl font-bold add-to-cart">إضافة إلى السلة</button>
+                        <a href="https://wa.me/213794718092?text=أريد%20طلب%20الساعة%20اليد%20الفاخرة" 
+                           class="w-full btn-outline-gold py-5 rounded-2xl text-xl font-bold flex items-center justify-center gap-3 icon-flip">
+                            طلب عبر واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="cart-modal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay">
+        <div class="bg-gray-900 rounded-2xl shadow-2xl max-w-lg w-full mx-4 overflow-hidden border gold-border">
+            <div class="p-6 border-b gold-border text-center">
+                <h2 class="text-3xl font-bold gold-accent">سلة التسوق</h2>
+            </div>
+            <div id="cart-items" class="p-6 max-h-96 overflow-y-auto"></div>
+            <div class="p-6 border-t gold-border flex justify-between items-center">
+                <p class="text-xl">الإجمالي: <span id="cart-total" class="font-bold gold-accent">0 د.ج</span></p>
+                <div class="flex gap-4">
+                    <button id="close-cart" class="btn-outline-gold px-6 py-2 rounded-xl">إغلاق</button>
+                    <button id="send-order" class="btn-gold px-6 py-2 rounded-xl font-bold">تأكيد</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="royal-dark border-t-4 gold-border py-12 text-center">
+        <p class="text-gray-600">© 2026 المتجر الفخم – جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            const countEl = document.getElementById('cart-count');
+            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countEl.textContent = total;
+            countEl.style.display = total > 0 ? 'flex' : 'none';
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400 py-10">السلة فارغة</p>';
+                document.getElementById('cart-total').textContent = '0 د.ج';
+                return;
+            }
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                const div = document.createElement('div');
+                div.className = 'flex justify-between items-center py-4 border-b border-gray-700';
+                div.innerHTML = `
+                    <div><p class="font-bold">${item.name}</p>
+                    <p class="text-gray-400">${item.price.toLocaleString()} × ${item.quantity}</p></div>
+                    <p class="font-bold gold-accent">${itemTotal.toLocaleString()} د.ج</p>
+                `;
+                container.appendChild(div);
+            });
+            document.getElementById('cart-total').textContent = `${total.toLocaleString()} د.ج`;
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.product-card');
+                const name = card.querySelector('h3').textContent;
+                const price = parseInt(card.querySelector('.price').textContent.replace(/[^\d]/g, ''));
+                
+                const existing = cart.find(i => i.name === name);
+                if (existing) existing.quantity++;
+                else cart.push({ name, price, quantity: 1 });
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+            });
+        });
+
+        document.getElementById('cart-icon').addEventListener('click', () => {
+            renderCart();
+            document.getElementById('cart-modal').style.display = 'flex';
+        });
+
+        document.getElementById('close-cart').addEventListener('click', () => {
+            document.getElementById('cart-modal').style.display = 'none';
+        });
+
+        document.getElementById('send-order').addEventListener('click', () => {
+            if (cart.length === 0) return;
+            let msg = "طلبية جديدة:\n";
+            cart.forEach(i => msg += `${i.name} (${i.quantity})\n`);
+            window.open(`https://wa.me/213794718092?text=${encodeURIComponent(msg)}`);
+        });
+
+        updateCartCount();
+    </script>
+</body>
+</html>
